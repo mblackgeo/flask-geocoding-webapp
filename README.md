@@ -27,5 +27,4 @@ Once either of these is running, browse to the application: [http://0.0.0.0:5000
 ## TODO
 
 * Docker build secrets need to handled properly, maybe with [Docker BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/)
-* Proper styling using Bootstrap
 * Form validation

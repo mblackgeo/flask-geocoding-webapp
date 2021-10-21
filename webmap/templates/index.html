@@ -1,13 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="container-fluid">
-    <form method="POST" action="{{ url_for('home') }}">
-        <fieldset class="form-field">
-            {{ form.location.label }}
-            {{ form.location(size=20) }}
-        </fieldset>
-        {{ form.submit }}
-    </form>
+<form method="POST" action="{{ url_for('home') }}">
+{{form.hidden_tag()}}
+<div class="mb-3">
+    {{form.location(class="form-control")}}
+    <div class="form-text">{{form.location.label()}}</div>
 </div>
+{{form.submit(class="btn btn-primary")}}
+</form>
 {% endblock %}

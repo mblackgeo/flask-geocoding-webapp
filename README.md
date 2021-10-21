@@ -2,7 +2,7 @@
 
 ## Geocoding application example
 
-The example webmap application uses [Flask](https://flask.palletsprojects.com/en/2.0.x/) along with [Folium](https://python-visualization.github.io/folium/index.html) to geocode a given location and display the result as a [LeafletJS](https://leafletjs.com/) map.
+The example webmap application uses [Flask](https://flask.palletsprojects.com/en/2.0.x/) along with [Folium](https://python-visualization.github.io/folium/index.html) to geocode a given location (using [geopy](https://github.com/geopy/geopy) via [Nominatim](https://nominatim.openstreetmap.org/)) and display the result as a [LeafletJS](https://leafletjs.com/) map.
 
 ## Usage
 
@@ -26,5 +26,5 @@ Once either of these is running, browse to the application: [http://0.0.0.0:5000
 
 ## TODO
 
-* Docker build secrets need to handled properly, maybe with [Docker BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/)
+* Docker build secrets using [Docker BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/)
 * Form validation

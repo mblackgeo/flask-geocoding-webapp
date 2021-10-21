@@ -8,4 +8,4 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 COPY run.bjoern.py run.bjoern.py
 COPY webmap webmap/
 
-ENTRYPOINT [ "python3", "run.bjoern.py"]
+ENTRYPOINT ["python3", "run.bjoern.py"]

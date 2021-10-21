@@ -1,5 +1,5 @@
 """App configuration."""
-from os import environ, path
+from os import environ, path, urandom
 
 from dotenv import load_dotenv
 
@@ -12,7 +12,7 @@ class Config:
     """Set Flask configuration vars from .env file."""
 
     # General Config
-    SECRET_KEY = environ.get("SECRET_KEY")
+    SECRET_KEY = environ.get("SECRET_KEY", urandom(32))
     FLASK_APP = environ.get("FLASK_APP")
     FLASK_ENV = environ.get("FLASK_ENV")
 

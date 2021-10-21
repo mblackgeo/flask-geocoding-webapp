@@ -9,4 +9,5 @@ COPY config.py config.py
 COPY run.bjoern.py run.bjoern.py
 COPY webmap webmap/
 
+EXPOSE 5000
 ENTRYPOINT ["python3", "run.bjoern.py"]

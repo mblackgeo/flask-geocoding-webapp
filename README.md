@@ -28,3 +28,4 @@ Once either of these is running, browse to the application: [http://0.0.0.0:5000
 
 * Docker build secrets using [Docker BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/)
 * Form validation
+* Test deployment using CDK

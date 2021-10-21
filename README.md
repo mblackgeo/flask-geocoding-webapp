@@ -1,1 +1,1 @@
-# flask-webmap-sanbox
+# flask-webmap-sandbox

@@ -24,8 +24,21 @@ Alternatively the containerised version, which uses the [Bjoern](https://github.
 
 Once either of these is running, browse to the application: [http://0.0.0.0:5000](http://0.0.0.0:5000)
 
+## Deploying to AWS
+
+To deploy the container to AWS [copilot](https://aws.github.io/copilot-cli/docs/getting-started/install/) is used to run the container using [AWS App Runner](https://eu-west-1.console.aws.amazon.com/apprunner/home?region=eu-west-1#/welcome). The usage is as follows:
+
+```shell
+copilot init  # answer a few questions, say "yes" to test deployment and wait for AWS App Engine to do it's magic
+# this takes around 10 minutes after which copilot should emit a URL with your service
+
+# Tear down everything with
+copilit app delete
+```
+
+This app has only been deployed in a test environment, however copilot can (and should) be used for production deployments or even with CI/CD. More details are in the [introductory blogpost](https://aws.amazon.com/blogs/containers/introducing-aws-copilot/).
+
 ## TODO
 
 * Docker build secrets using [Docker BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/)
 * Form validation
-* Test deployment using CDK

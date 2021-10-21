@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div>
+        <div class="embed-responsive" style="margin-bottom: 20px">
+            <iframe id="map-canvas" srcdoc="{{ map_content }}"></iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}

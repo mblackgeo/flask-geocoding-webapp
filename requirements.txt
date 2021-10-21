@@ -4,4 +4,4 @@ flask-wtf==0.15.1
 folium==0.12.1
 geopy==2.2.0
 python-dotenv==0.17.1
-wtforms==2.2.3
+wtforms==2.3.3

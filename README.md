@@ -2,9 +2,11 @@
 
 The example webmap application uses [Flask](https://flask.palletsprojects.com/en/2.0.x/) along with [Folium](https://python-visualization.github.io/folium/index.html) to geocode a given location (using [geopy](https://github.com/geopy/geopy) via [Nominatim](https://nominatim.openstreetmap.org/)) and display the result as a [LeafletJS](https://leafletjs.com/) map.
 
+![Example usage](/screenshots/example.gif)
+
 ## Usage
 
-Before running a new `.env` file should be created following the `.env.example` file.
+:exclamation: Before running a new `.env` file should be created following the `.env.example` file.
 
 On a local machine, a new virtualenv can be created and the debug version of the app can ran as follows:
 
@@ -30,6 +32,9 @@ To deploy the container to AWS [copilot](https://aws.github.io/copilot-cli/docs/
 copilot init  # answer a few questions, say "yes" to test deployment and wait for AWS App Engine to do it's magic
 # this takes around 10 minutes after which copilot should emit a URL with your service
 
+# TODO production deployment
+# TODO pipeline creation
+
 # Tear down everything with
 copilit app delete
 ```
@@ -39,4 +44,6 @@ This app has only been deployed in a test environment, however copilot can (and 
 ## TODO
 
 * [Handle secrets](https://aws.github.io/copilot-cli/docs/developing/secrets/) when building with copilot
+* Production deployment with copilot
+* [Automatic pipeline deployment](https://aws.github.io/copilot-cli/docs/concepts/pipelines/) using copilot
 * Form validation

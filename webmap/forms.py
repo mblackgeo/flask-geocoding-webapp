@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class GeocodeLocationForm(FlaskForm):
-    location = StringField('Enter location to geocode using Nominatim', [DataRequired()])
+    location = StringField('Enter location to geocode', [DataRequired()])
     provider = SelectField(
         'Select geocoding provider',
         choices=[('mapbox', 'Mapbox'), ('osm', 'OpenStreetMap Nominatim')],

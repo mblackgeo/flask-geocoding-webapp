@@ -1,10 +1,21 @@
 import folium
-from geopy.geocoders import Nominatim
+from geopy.geocoders import get_geocoder_for_service
 
 
-def create_map(app, location):
+def create_map(app, location, provider):
+    # get the selected geocoder
+    app.logger.debug(f'Getting geocoder for : {provider}')
+    cls = get_geocoder_for_service(provider)
+
+    # Configure and set API key if mapbox
+    config = {'user_agent': app.name}
+    if provider == 'mapbox':
+        config['api_key'] = app.config.get('MAPBOX_ACCESS_TOKEN')
+
+    geolocator = cls(**config)
+
     # geocode the location
-    geolocator = Nominatim(user_agent=app.name)
+    app.logger.debug(f'Geocoding location : {location}')
     location = geolocator.geocode(location)
     point = (location.latitude, location.longitude)
 

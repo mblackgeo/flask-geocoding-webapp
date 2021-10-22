@@ -7,7 +7,7 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY config.py config.py
 COPY run.bjoern.py run.bjoern.py
-COPY webmap webmap/
+COPY geocoder_app geocoder_app/
 
 EXPOSE 5000
 ENTRYPOINT ["python3", "run.bjoern.py"]

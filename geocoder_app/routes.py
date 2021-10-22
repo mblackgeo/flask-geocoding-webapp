@@ -2,8 +2,8 @@
 from flask import current_app as app
 from flask import render_template, jsonify, request
 
-from webmap.forms import GeocodeLocationForm
-from webmap.mapping import create_map
+from geocoder_app.forms import GeocodeLocationForm
+from geocoder_app.mapping import create_map
 
 
 @app.route('/', methods=["GET", "POST"])

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -x
+set -e
 echo "Running at : http://localhost:5000/"
 docker run -ti \
     --net=host \

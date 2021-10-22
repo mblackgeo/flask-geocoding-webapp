@@ -19,7 +19,7 @@ python run.debug.py
 Alternatively the containerised version, which uses the [Bjoern](https://github.com/jonashaag/bjoern) WSGI server can be launched as follows:
 
 ```shell
-./build.sh && ./run-local.sh
+./scripts/build && ./scripts/run
 ```
 
 Once either of these is running, browse to the application: [http://0.0.0.0:5000](http://0.0.0.0:5000)

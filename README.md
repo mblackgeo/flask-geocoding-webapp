@@ -1,6 +1,4 @@
-# flask-webmap-sandbox
-
-## Geocoding application example
+# Flask Geocoding Webapp
 
 The example webmap application uses [Flask](https://flask.palletsprojects.com/en/2.0.x/) along with [Folium](https://python-visualization.github.io/folium/index.html) to geocode a given location (using [geopy](https://github.com/geopy/geopy) via [Nominatim](https://nominatim.openstreetmap.org/)) and display the result as a [LeafletJS](https://leafletjs.com/) map.
 

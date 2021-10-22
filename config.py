@@ -15,6 +15,7 @@ class Config:
     SECRET_KEY = environ.get("SECRET_KEY", urandom(32))
     FLASK_APP = environ.get("FLASK_APP")
     FLASK_ENV = environ.get("FLASK_ENV")
+    MAPBOX_ACCESS_TOKEN = environ.get("MAPBOX_ACCESS_TOKEN")
 
     # Static Assets
     STATIC_FOLDER = "static"

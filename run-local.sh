@@ -4,5 +4,5 @@ echo "Running at : http://localhost:5000/"
 docker run -ti \
     --net=host \
     --env-file ./.env \
-    "flask-webmap-sandbox:latest" \
+    "flask-geocoding-webapp:latest" \
     "$@"

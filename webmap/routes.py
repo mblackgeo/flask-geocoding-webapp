@@ -11,10 +11,16 @@ def home():
     form = GeocodeLocationForm()
 
     if request.method == 'POST':
+        map_content = create_map(
+            app,
+            location=request.form.get('location'),
+            provider=request.form.get('provider'),
+        )
+
         return render_template(
             'map.html',
             title="Flask WebMap Sandbox",
-            map_content=create_map(app, request.form.get('location')),
+            map_content=map_content,
         )
 
     else:

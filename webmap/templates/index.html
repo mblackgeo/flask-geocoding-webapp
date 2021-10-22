@@ -2,11 +2,19 @@
 
 {% block content %}
 <form method="POST" action="{{ url_for('home') }}">
-{{form.hidden_tag()}}
-<div class="mb-3">
-    {{form.location(class="form-control")}}
-    <div class="form-text">{{form.location.label()}}</div>
-</div>
-{{form.submit(class="btn btn-primary")}}
+    {{form.hidden_tag()}}
+    <div class="row">
+        <div class="col">
+            {{form.location(class="form-control")}}
+            <div class="form-text">{{form.location.label()}}</div>
+        </div>
+        <div class="col">
+            {{form.provider(class="form-select")}}
+            <div class="form-text">{{form.provider.label()}}</div>
+        </div>
+        <div class="col">
+            {{form.submit(class="btn btn-primary")}}
+        </div>
+    </div>
 </form>
 {% endblock %}

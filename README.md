@@ -40,5 +40,5 @@ This app has only been deployed in a test environment, however copilot can (and 
 
 ## TODO
 
-* Docker build secrets using [Docker BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/)
+* [Handle secrets](https://aws.github.io/copilot-cli/docs/developing/secrets/) when building with copilot
 * Form validation

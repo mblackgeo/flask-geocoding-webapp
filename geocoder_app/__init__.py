@@ -8,5 +8,5 @@ def create_app():
     app.config.from_object("config.Config")
 
     with app.app_context():
-        from . import routes
+        from . import routes  # noqa: F401
         return app

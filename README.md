@@ -19,6 +19,7 @@ python run.debug.py
 Alternatively the containerised version, which uses the [Bjoern](https://github.com/jonashaag/bjoern) WSGI server can be launched as follows:
 
 ```shell
+# apt-get install libev-dev
 ./scripts/build && ./scripts/run
 ```
 

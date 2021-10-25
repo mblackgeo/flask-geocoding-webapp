@@ -8,6 +8,5 @@ setup(
     author_email="mblack@sparkgeo.com",
     description="A simple geocoding webapp using Flask and Folium",
     packages=find_packages(),
-    package_data={"templates": ["*"]},
     install_requires=[],  # TODO
 )

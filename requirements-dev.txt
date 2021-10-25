@@ -1,0 +1,7 @@
+autopep8
+black
+flake8
+mypy
+pytest
+pytest-cov
+pytest-mock

@@ -2,22 +2,26 @@ import folium
 from geopy.geocoders import get_geocoder_for_service
 
 
-def create_map(app, location, provider):
+def geocode_location(user_agent, provider, api_key, location):
     # get the selected geocoder
-    app.logger.debug(f'Getting geocoder for : {provider}')
     cls = get_geocoder_for_service(provider)
 
     # Configure and set API key if mapbox
-    config = {'user_agent': app.name}
+    config = {'user_agent': user_agent}
     if provider == 'mapbox':
-        config['api_key'] = app.config.get('MAPBOX_ACCESS_TOKEN')
+        config['api_key'] = api_key
 
+    # Return the lat/lng
     geolocator = cls(**config)
-
-    # geocode the location
-    app.logger.debug(f'Geocoding location : {location}')
     location = geolocator.geocode(location)
-    point = (location.latitude, location.longitude)
+    return (location.latitude, location.longitude)
+
+
+def create_map(app, location, provider):
+    # geocode the location
+    user_agent = app.name
+    api_key = app.config.get("MAPBOX_ACCESS_TOKEN")
+    point = geocode_location(user_agent, provider, api_key, location)
 
     # create the leaflet map using folium centred on the geocoded point
     fmap = folium.Map(

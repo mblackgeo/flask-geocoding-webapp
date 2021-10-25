@@ -33,7 +33,9 @@ pip install -e .
 pip install -r requirements-dev.txt
 ```
 
-Pytest is used for the functional tests of the application (see `/tests`).
+* [Pytest](https://docs.pytest.org/en/6.2.x/) is used for the functional tests of the application (see `/tests`).
+* Code is linted using [flake8](https://flake8.pycqa.org/en/latest/) with `--max-line-length=120`
+* Code formatted is validated using [Black](https://github.com/psf/black)
 
 ## Deploying to AWS
 

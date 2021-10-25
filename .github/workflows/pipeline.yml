@@ -13,8 +13,15 @@ jobs:
       with:
         python-version: 3.9
 
+    - name: Set up GCC (required for bjoern)
+      uses: egor-tensin/setup-gcc@v1
+      with:
+        version: latest
+        platform: x64
+
     - name: Install dependencies
       run: |
+        sudo apt-get install -y libev-dev
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi

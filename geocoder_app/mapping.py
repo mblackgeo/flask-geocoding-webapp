@@ -7,9 +7,9 @@ def geocode_location(user_agent, provider, api_key, location):
     cls = get_geocoder_for_service(provider)
 
     # Configure and set API key if mapbox
-    config = {'user_agent': user_agent}
-    if provider == 'mapbox':
-        config['api_key'] = api_key
+    config = {"user_agent": user_agent}
+    if provider == "mapbox":
+        config["api_key"] = api_key
 
     # Return the lat/lng
     geolocator = cls(**config)
@@ -27,7 +27,7 @@ def create_map(app, location, provider):
     fmap = folium.Map(
         location=point,
         zoom_start=14,
-        tiles='cartodbpositron',
+        tiles="cartodbpositron",
     )
 
     # add the point to the map

@@ -14,8 +14,8 @@ def app():
     ctx.push()
 
     _app.config["TESTING"] = True
-    _app.config['WTF_CSRF_ENABLED'] = False
-    _app.config['PRESERVE_CONTEXT_ON_EXCEPTION'] = False
+    _app.config["WTF_CSRF_ENABLED"] = False
+    _app.config["PRESERVE_CONTEXT_ON_EXCEPTION"] = False
     _app.testing = True
 
     yield _app

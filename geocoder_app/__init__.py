@@ -9,4 +9,5 @@ def create_app():
 
     with app.app_context():
         from . import routes  # noqa: F401
+
         return app

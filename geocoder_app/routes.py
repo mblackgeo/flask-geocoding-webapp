@@ -6,26 +6,26 @@ from geocoder_app.forms import GeocodeLocationForm
 from geocoder_app.mapping import create_map
 
 
-@app.route('/', methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def home():
     form = GeocodeLocationForm()
 
-    if request.method == 'POST':
+    if request.method == "POST":
         map_content = create_map(
             app,
-            location=request.form.get('location'),
-            provider=request.form.get('provider'),
+            location=request.form.get("location"),
+            provider=request.form.get("provider"),
         )
 
         return render_template(
-            'map.html',
+            "map.html",
             title="Flask WebMap Sandbox",
             map_content=map_content,
         )
 
     else:
         return render_template(
-            'index.html',
+            "index.html",
             title="Flask WebMap Sandbox",
             description="Testing out rendering webmaps with Flask and Folium",
             form=form,
@@ -34,4 +34,4 @@ def home():
 
 @app.route("/health")
 def health():
-    return jsonify({'status': 'ok'})
+    return jsonify({"status": "ok"})

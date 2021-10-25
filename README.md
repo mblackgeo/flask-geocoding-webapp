@@ -24,6 +24,17 @@ Alternatively the containerised version, which uses the [Bjoern](https://github.
 
 Once either of these is running, browse to the application: [http://0.0.0.0:5000](http://0.0.0.0:5000)
 
+## Development
+
+For local development, the application can be installed as editable and the dev requirements installed using pip:
+
+```shell
+pip install -e .
+pip install -r requirements-dev.txt
+```
+
+Pytest is used for the functional tests of the application (see `/tests`).
+
 ## Deploying to AWS
 
 To deploy the container to AWS [copilot](https://aws.github.io/copilot-cli/docs/getting-started/install/) is used to run the container using [AWS App Runner](https://eu-west-1.console.aws.amazon.com/apprunner/home?region=eu-west-1#/welcome). The usage is as follows:

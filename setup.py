@@ -11,14 +11,11 @@ def get_version_from_package() -> str:
     with open(path) as f:
         for line in f:
             if line.startswith("__version__"):
-                _, version = line.split(" = ", 1)s
-                version = version.replace("\"", "").strip()
+                _, version = line.split(" = ", 1)
+                version = version.replace('"', "").strip()
 
     return version
 
 
-if __name__ == '__main__':
-    setup(
-        name="geocoderapp",
-        version=get_version_from_package()
-    )
+if __name__ == "__main__":
+    setup(name="geocoderapp", version=get_version_from_package())

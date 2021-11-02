@@ -1,12 +1,24 @@
-from setuptools import setup, find_packages
+import os.path
 
-setup(
-    name="geocoderapp",
-    version="0.0.1",
-    url="https://github.com/mblackgeo/flask-geocoding-webapp.git",
-    author="Martin Black",
-    author_email="mblack@sparkgeo.com",
-    description="A simple geocoding webapp using Flask and Folium",
-    packages=find_packages(),
-    install_requires=[],  # TODO
-)
+from setuptools import setup
+
+
+def get_version_from_package() -> str:
+    """Read the package version from the source without importing it."""
+    path = os.path.join(os.path.dirname(__file__), "geocoder_app/__init__.py")
+    path = os.path.normpath(os.path.abspath(path))
+
+    with open(path) as f:
+        for line in f:
+            if line.startswith("__version__"):
+                _, version = line.split(" = ", 1)s
+                version = version.replace("\"", "").strip()
+
+    return version
+
+
+if __name__ == '__main__':
+    setup(
+        name="geocoderapp",
+        version=get_version_from_package()
+    )

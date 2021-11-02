@@ -1,6 +1,6 @@
 """Route declaration."""
 from flask import current_app as app
-from flask import render_template, jsonify, request
+from flask import jsonify, render_template, request
 
 from geocoder_app.forms import GeocodeLocationForm
 from geocoder_app.mapping import create_map

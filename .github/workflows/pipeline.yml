@@ -33,5 +33,8 @@ jobs:
     - name: Check formatting with Black
       run: black . --check
 
+    - name: Check import order with isort
+      run: isort -c geocoder_app
+
     - name: Test with pytest
       run: pytest -v --cov

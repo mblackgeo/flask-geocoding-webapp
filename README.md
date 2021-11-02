@@ -27,9 +27,10 @@ Once either of these is running, browse to the application: [http://0.0.0.0:5000
 
 ## Development
 
-For local development, the application can be installed as editable and the dev requirements installed using pip:
+For local development, pre-commit should be installed and the application can be installed as editable along with the dev requirements:
 
 ```shell
+pre-commit install
 pip install -e .
 pip install -r requirements-dev.txt
 ```
@@ -37,6 +38,8 @@ pip install -r requirements-dev.txt
 * [Pytest](https://docs.pytest.org/en/6.2.x/) is used for the functional tests of the application (see `/tests`).
 * Code is linted using [flake8](https://flake8.pycqa.org/en/latest/) with `--max-line-length=120`
 * Code formatting is validated using [Black](https://github.com/psf/black)
+* [pre-commit](https://pre-commit.com/) is used to run these checks locally before files are pushed to git
+* The [Github Actions pipeline](.github/workflows/pipeline.yml) also runs these checks and tests
 
 ## Deploying to AWS
 

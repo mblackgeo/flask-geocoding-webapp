@@ -4,9 +4,13 @@ from wtforms.validators import DataRequired
 
 
 class GeocodeLocationForm(FlaskForm):
+    """Form for entering a location and selecting a geolocation provider"""
+
     location = StringField("Enter location to geocode", [DataRequired()])
+
     provider = SelectField(
         "Select geocoding provider",
-        choices=[("mapbox", "Mapbox"), ("osm", "OpenStreetMap Nominatim")],
+        choices=[("mapbox", "Mapbox"), ("nominatim", "OpenStreetMap Nominatim")],
     )
+
     submit = SubmitField("Submit")

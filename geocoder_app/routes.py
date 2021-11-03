@@ -1,4 +1,5 @@
 """Route declaration."""
+from flask import Response
 from flask import current_app as app
 from flask import jsonify, render_template, request
 
@@ -7,7 +8,18 @@ from geocoder_app.mapping import create_map
 
 
 @app.route("/", methods=["GET", "POST"])
-def home():
+def home() -> str:
+    """Render the homepage of the website and handle both GET and POST
+
+    GET requests will render the GeocodeLocationForm
+    POST requests will extract details from a submitted GeocodeLocationForm,
+    call whichever geocoding api was requested and render a map of the result
+
+    Returns
+    -------
+    str
+        HTML of page to display at "/"
+    """
     form = GeocodeLocationForm()
 
     if request.method == "POST":
@@ -33,5 +45,12 @@ def home():
 
 
 @app.route("/health")
-def health():
+def health() -> Response:
+    """Return a JSON response containing status OK. Used for automatic health checks
+
+    Returns
+    -------
+    flask.Response
+        200 OK response
+    """
     return jsonify({"status": "ok"})

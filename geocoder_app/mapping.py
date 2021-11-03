@@ -1,8 +1,32 @@
+from typing import Tuple
+
 import folium
+from flask import Flask
 from geopy.geocoders import get_geocoder_for_service
 
 
-def geocode_location(user_agent, provider, api_key, location):
+def geocode_location(user_agent: str, provider: str, api_key: str, location: str) -> Tuple[float, float]:
+    """Geocode a location using a specific provider
+
+    Parameters
+    ----------
+    user_agent : str
+        Name of user agent used when making a request to ``provider``
+    provider : str
+        Name of provider to use. In theory this is anything supported by
+        `geopy.geocoders.get_geocoder_for_service`, however in practice only
+        OpenStreetMap Nominatim and Mapbox are used
+    api_key : str
+        If using Mapbx, the API key
+    location : str
+        Location to geocode
+
+    Returns
+    -------
+    Tuple[float, float]
+        Lat, Lng returned from the geocoder
+    """
+
     # get the selected geocoder
     cls = get_geocoder_for_service(provider)
 
@@ -13,14 +37,31 @@ def geocode_location(user_agent, provider, api_key, location):
 
     # Return the lat/lng
     geolocator = cls(**config)
-    location = geolocator.geocode(location)
-    return (location.latitude, location.longitude)
+    geocoded_location = geolocator.geocode(location)
+    return (geocoded_location.latitude, geocoded_location.longitude)
 
 
-def create_map(app, location, provider):
+def create_map(app: Flask, location: str, provider: str) -> str:
+    """Create a map by geocoding a location using a specific provider
+
+    Parameters
+    ----------
+    app : Flask
+        Flask application. Used to extract the app name as the user agent
+        when performing geocoding
+    location : str
+        Location to geocode
+    provider : str
+        Provider to use. Choose Nominatim, Mapbox
+
+    Returns
+    -------
+    str
+        Folium map rendered as HTML suitable for embedding as an iframe
+    """
     # geocode the location
     user_agent = app.name
-    api_key = app.config.get("MAPBOX_ACCESS_TOKEN")
+    api_key = app.config.get("MAPBOX_ACCESS_TOKEN", "")
     point = geocode_location(user_agent, provider, api_key, location)
 
     # create the leaflet map using folium centred on the geocoded point

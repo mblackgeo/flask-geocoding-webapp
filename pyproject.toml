@@ -35,7 +35,7 @@ python_files = [
 addopts = [
     "-v",
     "-rxs",
-    "--cov geocoder_app",
-    "--cov-report term-missing:skip-covered",
-    "-p no:warnings"
+    "--cov", "geocoder_app",
+    "--cov-report", "term-missing:skip-covered",
+    "-p", "no:warnings"
 ]

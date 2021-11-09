@@ -26,14 +26,16 @@ line_length = 120
 known_first_party = ["geocoder_app"]
 
 [tool.pytest.ini_options]
-testpaths = tests
-python_files =
-    test_*.py
-    *_test.py
-    tests.py
-addopts =
-    -v
-    -rxs
-    --cov geocoder_app
-    --cov-report term-missing:skip-covered
-    -p no:warnings
+testpaths = "tests"
+python_files = [
+    "test_*.py",
+    "*_test.py",
+    "tests.py"
+]
+addopts = [
+    "-v",
+    "-rxs",
+    "--cov geocoder_app",
+    "--cov-report term-missing:skip-covered",
+    "-p no:warnings"
+]

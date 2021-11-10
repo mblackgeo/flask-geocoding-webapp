@@ -1,8 +1,6 @@
 from aws_cdk import aws_certificatemanager as acm
-from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_ecs as ecs
 from aws_cdk import aws_ecs_patterns as ecs_patterns
-from aws_cdk import aws_elasticloadbalancingv2 as elb
 from aws_cdk import aws_logs as logs
 from aws_cdk import aws_route53 as route53
 from aws_cdk import core
@@ -13,12 +11,6 @@ from stacks.config import conf
 class ECSStack(core.Stack):
     def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
-
-        # Create a VPC
-        vpc = ec2.Vpc(scope=self, id=f"{id}-vpc", cidr="10.0.8.0/21")
-
-        # Create an Elastic Container Service cluster in the VPC
-        ecs_cluster = ecs.Cluster(self, id=f"{id}-ecs", cluster_name="serving-ecs", vpc=vpc, container_insights=True)
 
         # Register a task definition for this container
         task_definition = ecs.FargateTaskDefinition(
@@ -54,28 +46,23 @@ class ECSStack(core.Stack):
                 validation=acm.CertificateValidation.from_dns(domain_zone),
             )
 
-            # Serve traffic on HTTPS
-            protocol = elb.ApplicationProtocol.HTTPS
-
         else:
-            protocol = elb.ApplicationProtocol.HTTP
             domain_cert = None
-            domain_name = None
             domain_zone = None
+            domain_name = None
 
         # Create the load balanced service to serve the container
-        self.service = ecs_patterns.ApplicationLoadBalancedFargateService(
+        service = ecs_patterns.ApplicationLoadBalancedFargateService(
             self,
             id=f"{id}-fargate-service",
             assign_public_ip=True,
-            cluster=ecs_cluster,
             desired_count=1,
             task_definition=task_definition,
             open_listener=True,
-            listener_port=conf.port,
-            target_protocol=protocol,
             domain_name=domain_name,
             domain_zone=domain_zone,
             certificate=domain_cert,
             enable_ecs_managed_tags=True,
         )
+
+        service.target_group.configure_health_check(path="/health")

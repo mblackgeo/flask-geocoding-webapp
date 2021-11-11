@@ -22,6 +22,15 @@ cdk bootstrap
 
 :exclamation: The environment variables should be setup by copying `.env.example` to `.env` and populating with required values.
 
+:exclamation: The Mapbox API key should be stored using the AWS Secrets Manager as follows:
+
+```shell
+aws secretsmanager create-secret \
+    --name mapbox_api_key \
+    --description "The API key for Mapbox" \
+    --secret-string "pk.123456789qwertyuiop"
+```
+
 CDK can then be used to deploy:
 
 ```shell

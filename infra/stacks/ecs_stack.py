@@ -3,6 +3,7 @@ from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_ecs as ecs
 from aws_cdk import aws_ecs_patterns as ecs_patterns
 from aws_cdk import aws_route53 as route53
+from aws_cdk import aws_secretsmanager as ssm
 from aws_cdk import core
 
 from stacks.config import conf
@@ -34,6 +35,13 @@ class ECSStack(core.Stack):
             hosted_zone=hosted_zone,
         )
 
+        # Grab the Mapbox API key from secrets manager to inject into the container's environment.
+        mapbox_secret = ssm.Secret.from_secret_name_v2(
+            self,
+            f"{id}-api-secret",
+            "mapbox_api_key",
+        )
+
         # Use the ApplicationLoadBalancedFargateService construct to pull the local Dockerfile,
         # push the image to ECR, and deploy to Fargate
         app = ecs_patterns.ApplicationLoadBalancedFargateService(
@@ -50,7 +58,7 @@ class ECSStack(core.Stack):
             task_image_options=ecs_patterns.ApplicationLoadBalancedTaskImageOptions(
                 image=ecs.ContainerImage.from_asset(".."),
                 container_port=conf.port,
-                # TODO secrets
+                secrets={"MAPBOX_ACCESS_TOKEN": ecs.Secret.from_secrets_manager(mapbox_secret)},
             ),
         )
 

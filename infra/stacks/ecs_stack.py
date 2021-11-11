@@ -19,21 +19,29 @@ class ECSStack(core.Stack):
         # Create the ECS Cluster
         cluster = ecs.Cluster(self, f"{id}-Cluster", vpc=vpc)
 
-        # Lookup the Route 53 hosted zone for the domain
-        hosted_zone = route53.HostedZone.from_lookup(
-            self,
-            f"{id}-HostedZone",
-            domain_name=conf.domain_name,
-            private_zone=False,
-        )
+        # Optionally setup with (sub)domain
+        if conf.domain_name:
+            api_domain_name = f"{conf.api_subdomain}.{conf.domain_name}"
 
-        # Create a DNS validated SSL certificate for the loadbalancer
-        certificate = acm.DnsValidatedCertificate(
-            self,
-            f"{id}-Certificate",
-            domain_name=f"{conf.api_subdomain}.{conf.domain_name}",
-            hosted_zone=hosted_zone,
-        )
+            # Lookup the Route 53 hosted zone for the domain
+            hosted_zone = route53.HostedZone.from_lookup(
+                self,
+                f"{id}-HostedZone",
+                domain_name=conf.domain_name,
+                private_zone=False,
+            )
+
+            # Create a DNS validated SSL certificate for the loadbalancer
+            certificate = acm.DnsValidatedCertificate(
+                self,
+                f"{id}-Certificate",
+                domain_name=api_domain_name,
+                hosted_zone=hosted_zone,
+            )
+        else:
+            hosted_zone = None
+            certificate = None
+            api_domain_name = None
 
         # Grab the Mapbox API key from secrets manager to inject into the container's environment.
         mapbox_secret = ssm.Secret.from_secret_name_v2(
@@ -48,7 +56,7 @@ class ECSStack(core.Stack):
             self,
             f"{id}-Webservice",
             cluster=cluster,
-            domain_name=f"{conf.api_subdomain}.{conf.domain_name}",
+            domain_name=api_domain_name,
             domain_zone=hosted_zone,
             certificate=certificate,
             assign_public_ip=True,

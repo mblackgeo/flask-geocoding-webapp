@@ -41,26 +41,8 @@ pip install -r requirements-dev.txt
 * [pre-commit](https://pre-commit.com/) is used to run these checks locally before files are pushed to git
 * The [Github Actions pipeline](.github/workflows/pipeline.yml) also runs these checks and tests
 
-## Deploying to AWS
+## Deployment
 
-To deploy the container to AWS [copilot](https://aws.github.io/copilot-cli/docs/getting-started/install/) is used to run the container using [AWS App Runner](https://eu-west-1.console.aws.amazon.com/apprunner/home?region=eu-west-1#/welcome). The usage is as follows:
+Deployment to AWS is handled by the AWS Cloud Development Kit (CDK) using AWS Elastic Container Service (ECS). All code is in [`/infra`](/infra).
 
-```shell
-copilot init  # answer a few questions, say "yes" to test deployment and wait for AWS App Engine to do it's magic
-# this takes around 10 minutes after which copilot should emit a URL with your service
-
-# TODO production deployment
-# TODO pipeline creation
-
-# Tear down everything with
-copilit app delete
-```
-
-This app has only been deployed in a test environment, however copilot can (and should) be used for production deployments or even with CI/CD. More details are in the [introductory blogpost](https://aws.amazon.com/blogs/containers/introducing-aws-copilot/).
-
-## TODO
-
-* [Handle secrets](https://aws.github.io/copilot-cli/docs/developing/secrets/) when building with copilot
-* Production deployment with copilot
-* [Automatic pipeline deployment](https://aws.github.io/copilot-cli/docs/concepts/pipelines/) using copilot
-* Form validation
+However as this an is a simple standalone container, [AWS copilot](https://aws.github.io/copilot-cli) was previously used for initial deployment. It could also be used for production deployments and to generate CI/CD pipelines. More details are in the [introductory blogpost](https://aws.amazon.com/blogs/containers/introducing-aws-copilot/).

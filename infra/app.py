@@ -5,6 +5,6 @@ from stacks.ecs_stack import ECSStack
 
 app = core.App()
 cdk_environment = core.Environment(region=conf.aws_region, account=conf.aws_account)
-container_stack = ECSStack(app, "ecs-stack", env=cdk_environment)
+container_stack = ECSStack(app, "geocoder-stack", env=cdk_environment)
 
 app.synth()

@@ -33,6 +33,7 @@ For local development, pre-commit should be installed and the application can be
 pre-commit install
 pip install -e .
 pip install -r requirements-dev.txt
+pre-commit install
 ```
 
 * [Pytest](https://docs.pytest.org/en/6.2.x/) is used for the functional tests of the application (see `/tests`).

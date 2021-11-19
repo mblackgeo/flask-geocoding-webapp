@@ -27,13 +27,12 @@ class ECSCognitoStack(core.Stack):
         # Create the ECS Cluster
         cluster = ecs.Cluster(self, f"{id}-cluster", vpc=vpc)
 
-        # Optionally setup with (sub)domain
+        # Setup with (sub)domain
         api_domain_name = f"{conf.api_subdomain}.{conf.domain_name}"
 
         # ---------------------------------------------------------------------
         # Cognito setup
         # ---------------------------------------------------------------------
-
         # Create a user pool and get Cognito to send a verification email to the
         # user to confirm their account
         self.user_pool = cognito.UserPool(
@@ -79,7 +78,7 @@ class ECSCognitoStack(core.Stack):
 
         # Logout URLs and redirect URIs can't be set in CDK constructs natively ...yet
         user_pool_client_cf = self.user_pool_client.node.default_child
-        user_pool_client_cf.logout_urls = [
+        user_pool_client_cf.logout_ur_ls = [
             # This is here to allow a redirect to the login page
             # after the logout has been completed
             f"https://{api_domain_name}"

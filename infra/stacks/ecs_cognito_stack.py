@@ -78,7 +78,7 @@ class ECSCognitoStack(core.Stack):
         )
 
         # Logout URLs and redirect URIs can't be set in CDK constructs natively ...yet
-        user_pool_client_cf: cognito.CfnUserPoolClient = self.user_pool_client.node.default_child
+        user_pool_client_cf = self.user_pool_client.node.default_child
         user_pool_client_cf.logout_ur_ls = [
             # This is here to allow a redirect to the login page
             # after the logout has been completed

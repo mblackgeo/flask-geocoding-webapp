@@ -21,7 +21,6 @@ setuptools.setup(
         "aws_cdk.aws_ecs_patterns==1.132.0",
         "aws_cdk.aws_elasticloadbalancingv2==1.132.0",
         "aws_cdk.aws_elasticloadbalancingv2_actions==1.132.0",
-        "aws_cdk.aws_lambda==1.132.0",
         "aws_cdk.aws_route53==1.132.0",
         "aws_cdk.aws_secretsmanager==1.132.0",
         "aws-cdk.core==1.132.0",

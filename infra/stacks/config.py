@@ -15,4 +15,5 @@ conf = SimpleNamespace(
     fargate_cpu_units=int(os.environ.get("FARGATE_CPU_UNITS", 512)),
     fargate_memory_limit_mb=int(os.environ.get("FARGATE_MEMORY_LIMIT_MB", 1024)),
     port=int(os.environ.get("PORT", 5000)),
+    cognito_subdomain=os.environ.get("COGNITO_SUBDOMAIN", ""),
 )

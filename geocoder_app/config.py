@@ -16,6 +16,8 @@ class Config:
     FLASK_APP = environ.get("FLASK_APP")
     FLASK_ENV = environ.get("FLASK_ENV")
     MAPBOX_ACCESS_TOKEN = environ.get("MAPBOX_ACCESS_TOKEN")
+    LOGOUT_URL = environ.get("LOGOUT_URL")
+    USER_INFO_URL = environ.get("USER_INFO_URL")
 
     # Static Assets
     STATIC_FOLDER = "static"

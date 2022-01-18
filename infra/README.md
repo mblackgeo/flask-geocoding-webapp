@@ -1,5 +1,5 @@
 
-# TimezoneFinder API Infrastructure as code
+# Infrastructure as code
 
 ## Overview
 
